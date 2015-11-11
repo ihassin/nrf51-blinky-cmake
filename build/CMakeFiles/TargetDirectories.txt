@@ -1,0 +1,1 @@
+/Users/ThoughtWorks/nrf/projects/blinky/build/CMakeFiles/.elf.dir

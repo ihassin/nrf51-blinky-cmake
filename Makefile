@@ -187,5 +187,4 @@ cleanobj:
 
 flash: $(MAKECMDGOALS)
 	@echo Flashing: $(OUTPUT_BINARY_DIRECTORY)/$<.hex
-	./flash.sh
-
+	jlinkexe upload.jlink
