@@ -41,7 +41,7 @@ int main(void)
         for (int i = 0; i < LEDS_NUMBER; i++)
         {
             LEDS_INVERT(1 << leds_list[i]);
-            nrf_delay_ms(500);
+            nrf_delay_ms(140);
         }
     }
 }
