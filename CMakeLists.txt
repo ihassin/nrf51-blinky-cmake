@@ -27,9 +27,9 @@ set(NRF_ROOT                $ENV{HOME}/nrf)
 set(NRF_SDK                 ${NRF_ROOT}/sdk)
 set(NRF_SDK_ROOT            ${NRF_SDK}/nrf51_sdk_latest)
 set(SDK_COMPONENTS          ${NRF_SDK_ROOT}/components)
-set(NRF_TOOLCHAIN           ${SDK_SDK_COMPONENTS}/toolchain)
-set(DEVICE_INCLUDES         ${SDK_SDK_COMPONENTS}/device)
-set(GCC                     ${NRF_TOOLCHAIN}/gcc)
+set(NRF_TOOLCHAIN           ${SDK_COMPONENTS}/toolchain)
+set(DEVICE_INCLUDES         ${SDK_COMPONENTS}/device)
+set(NRF_GCC                 ${NRF_TOOLCHAIN}/gcc)
 
 set(MAIN_TARGET ${PROJECT_NAME}.out)
 
@@ -38,8 +38,8 @@ set(LINKER_SCRIPT ../blinky_gcc_nrf51.ld)
 set(CMAKE_C_FLAGS "-T${LINKER_SCRIPT} -DDEBUG -DBOARD_PCA10028 -DSOFTDEVICE_PRESENT -D${CHIP} -D${SOFTDEVICE} -DBLE_STACK_SUPPORT_REQD -DBSP_DEFINES_ONLY -mcpu=cortex-m0 -mthumb -mabi=aapcs --std=gnu99 -Wall -Werror -O3 -mfloat-abi=soft -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin --short-enums -g -O0 -L ${SDK_COMPONENTS}/toolchain/gcc -lc -lnosys")
 
 include_directories(
-    ${SDK_COMPONENTS}/toolchain
-    ${SDK_COMPONENTS}/toolchain/gcc
+    ${NRF_TOOLCHAIN}
+    ${NRF_GCC}
     ${SDK_COMPONENTS}/softdevice/${SOFTDEVICE}/headers
     ${NRF_SDK_ROOT}/examples/bsp
     ${SDK_COMPONENTS}/device
@@ -47,8 +47,8 @@ include_directories(
 )
 
 set(SOURCE_FILES
-    ${SDK_COMPONENTS}/toolchain/gcc/gcc_startup_nrf51.s
-    ${SDK_COMPONENTS}/toolchain/system_nrf51.c
+    ${NRF_GCC}/gcc_startup_nrf51.s
+    ${NRF_TOOLCHAIN}/system_nrf51.c
     ${SDK_COMPONENTS}/drivers_nrf/hal/nrf_delay.c
     main.c)
 
