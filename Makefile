@@ -110,7 +110,6 @@ help:
 	@echo 	nrf51822_xxac
 	@echo 	flash_softdevice
 
-
 C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
 C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.c=.o) )
