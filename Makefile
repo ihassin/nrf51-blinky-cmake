@@ -41,7 +41,7 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 C_SOURCE_FILES += \
 $(abspath $(SDK_ROOT)/components/toolchain/system_nrf51.c) \
 $(abspath main.c) \
-$(abspath $(SDK_ROOT)/components/drivers_nrf/hal/nrf_delay.c) \
+$(abspath $(SDK_ROOT)/components/drivers_nrf/hal/nrf_delay.c)
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath $(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf51.s)
