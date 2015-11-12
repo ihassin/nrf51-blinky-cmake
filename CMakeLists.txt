@@ -17,6 +17,7 @@ set(CMAKE_ASM_COMPILER  ${tools}/bin/arm-none-eabi-as)
 set(SIZE_COMMAND        ${tools}/bin/arm-none-eabi-size)
 set(OBJCOPY_COMMAND     ${tools}/bin/arm-none-eabi-objcopy)
 
+set(CHIP NRF51)
 set(SOFTDEVICE S110)
 
 set(BUILD_SHARED_LIBS OFF)
@@ -34,7 +35,7 @@ set(MAIN_TARGET ${PROJECT_NAME}.out)
 
 set(LINKER_SCRIPT ../blinky_gcc_nrf51.ld)
 
-set(CMAKE_C_FLAGS "-T${LINKER_SCRIPT} -DBOARD_PCA10028 -DSOFTDEVICE_PRESENT -DNRF51 -DS110 -DBLE_STACK_SUPPORT_REQD -DBSP_DEFINES_ONLY -mcpu=cortex-m0 -mthumb -mabi=aapcs --std=gnu99 -Wall -Werror -O3 -mfloat-abi=soft -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin --short-enums -DDEBUG -g -O0 -DBOARD_PCA10028 -DSOFTDEVICE_PRESENT -DNRF51 -DS110 -DBLE_STACK_SUPPORT_REQD -DBSP_DEFINES_ONLY -DDEBUG -L ${SDK_COMPONENTS}/toolchain/gcc -lc -lnosys -mcpu=cortex-m0 -mthumb -mabi=aapcs --std=gnu99 -Wall -Werror -O3 -mfloat-abi=soft -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin --short-enums -DDEBUG -g -O0 -L ${SDK_COMPONENTS}/toolchain/gcc -lc -lnosys")
+set(CMAKE_C_FLAGS "-T${LINKER_SCRIPT} -DDEBUG -DBOARD_PCA10028 -DSOFTDEVICE_PRESENT -D${CHIP} -D${SOFTDEVICE} -DBLE_STACK_SUPPORT_REQD -DBSP_DEFINES_ONLY -mcpu=cortex-m0 -mthumb -mabi=aapcs --std=gnu99 -Wall -Werror -O3 -mfloat-abi=soft -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin --short-enums -g -O0 -L ${SDK_COMPONENTS}/toolchain/gcc -lc -lnosys")
 
 include_directories(
     ${SDK_COMPONENTS}/toolchain
