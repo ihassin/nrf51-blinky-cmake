@@ -1,8 +1,8 @@
-# Blinky using CMake
+# NRF51 Blinky using CMake
 
 This is an example of how to compile NRF51 code using CMake.
 
-The example is Blinky from Nordic.
+The example is Blinky from Nordic, and assumes you have GCC and the Nordic SDK installed properly.
 
 # Build
 
