@@ -7,6 +7,8 @@ The example is Blinky from Nordic, and assumes you have GCC and the Nordic SDK i
 # Build
 
 ```
+git clone git@github.com:ihassin/nrf51-blinky-cmake.git
+cd nrf51-blinky-cmake
 mkdir build
 cd build
 cmake ..
