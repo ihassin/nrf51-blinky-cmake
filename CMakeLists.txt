@@ -33,7 +33,7 @@ set(NRF_GCC                 ${NRF_TOOLCHAIN}/gcc)
 
 set(MAIN_TARGET ${PROJECT_NAME}.out)
 
-set(LINKER_SCRIPT ../blinky_gcc_nrf51.ld)
+set(LINKER_SCRIPT ${PROJECT_SOURCE_DIR}/blinky_gcc_nrf51.ld)
 
 set(CMAKE_C_FLAGS "-T${LINKER_SCRIPT} -DDEBUG -DBOARD_PCA10028 -DSOFTDEVICE_PRESENT -D${CHIP} -D${SOFTDEVICE} -DBLE_STACK_SUPPORT_REQD -DBSP_DEFINES_ONLY -mcpu=cortex-m0 -mthumb -mabi=aapcs --std=gnu99 -Wall -Werror -O3 -mfloat-abi=soft -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin --short-enums -g -O0 -L ${SDK_COMPONENTS}/toolchain/gcc -lc -lnosys")
 
