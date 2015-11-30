@@ -25,6 +25,11 @@
 #include "nrf_gpio.h"
 #include "boards.h"
 
+#define RUN_TEST(func) UnityDefaultTestRun(func, #func, __LINE__)
+
+#include "unity.h"
+#include "tests.h"
+
 const uint8_t leds_list[LEDS_NUMBER] = LEDS_LIST;
 
 /**
@@ -32,6 +37,21 @@ const uint8_t leds_list[LEDS_NUMBER] = LEDS_LIST;
  */
 int main(void)
 {
+    UnityBegin("main.c");
+
+    LEDS_CONFIGURE(LEDS_MASK);
+//    LEDS_INVERT(1 << leds_list[0]);     // Blue
+
+    RUN_TEST(test_1);
+
+    if(Unity.TestFailures == 0)
+    {
+        LEDS_INVERT(1 << leds_list[2]);     // Green
+    } else {
+        LEDS_INVERT(1 << leds_list[1]);     // Red
+    }
+
+#if 0
     // Configure LED-pins as outputs.
     LEDS_CONFIGURE(LEDS_MASK);
 
@@ -44,6 +64,8 @@ int main(void)
             nrf_delay_ms(140);
         }
     }
+#endif
+
 }
 
 

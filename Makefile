@@ -11,6 +11,7 @@ MAKEFILE_DIR := $(dir $(MAKEFILE_NAME) )
 SDK_ROOT :=  $(HOME)/nrf/sdk/nrf51_sdk_latest
 
 TEMPLATE_PATH = $(SDK_ROOT)/components/toolchain/gcc
+UNITY := $(HOME)/Documents/projects/unity/src
 
 include $(TEMPLATE_PATH)/Makefile.posix
 
@@ -41,6 +42,8 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 C_SOURCE_FILES += \
 $(abspath $(SDK_ROOT)/components/toolchain/system_nrf51.c) \
 $(abspath main.c) \
+$(abspath $(UNITY)/unity.c) \
+$(abspath $(UNITY)/tests.c) \
 $(abspath $(SDK_ROOT)/components/drivers_nrf/hal/nrf_delay.c)
 
 #assembly files common to all targets
@@ -53,6 +56,7 @@ INC_PATHS += -I$(abspath $(SDK_ROOT)/components/softdevice/$(SOFTDEVICE)/headers
 INC_PATHS += -I$(abspath $(SDK_ROOT)/examples/bsp)
 INC_PATHS += -I$(abspath $(SDK_ROOT)/components/device)
 INC_PATHS += -I$(abspath $(SDK_ROOT)/components/drivers_nrf/hal)
+INC_PATHS += -I$(abspath $(UNITY))
 
 OBJECT_DIRECTORY = _build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)

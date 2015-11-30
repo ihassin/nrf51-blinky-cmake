@@ -30,6 +30,7 @@ set(SDK_COMPONENTS          ${NRF_SDK_ROOT}/components)
 set(NRF_TOOLCHAIN           ${SDK_COMPONENTS}/toolchain)
 set(DEVICE_INCLUDES         ${SDK_COMPONENTS}/device)
 set(NRF_GCC                 ${NRF_TOOLCHAIN}/gcc)
+set(UNITY                   $ENV{HOME}/Documents/projects/unity/src)
 
 set(MAIN_TARGET ${PROJECT_NAME}.out)
 
@@ -44,19 +45,24 @@ include_directories(
     ${NRF_SDK_ROOT}/examples/bsp
     ${SDK_COMPONENTS}/device
     ${SDK_COMPONENTS}/drivers_nrf/hal
+    ${UNITY}
 )
 
 set(SOURCE_FILES
     ${NRF_GCC}/gcc_startup_nrf51.s
     ${NRF_TOOLCHAIN}/system_nrf51.c
     ${SDK_COMPONENTS}/drivers_nrf/hal/nrf_delay.c
+    ${UNITY}/unity.c
     main.c)
 
-add_executable(${MAIN_TARGET} ${SOURCE_FILES})
+# Unit test files
+set(UNITY_TEST_SOURCE_FILES tests.h tests.c)
+
+add_executable(${MAIN_TARGET} ${SOURCE_FILES} ${UNITY_TEST_SOURCE_FILES})
 
 add_custom_command(
-        TARGET ${MAIN_TARGET}
-        COMMAND ${SIZE_COMMAND} ${MAIN_TARGET}
-        COMMAND ${OBJCOPY_COMMAND} -O ihex ${MAIN_TARGET} ${PROJECT_NAME}.hex
-        COMMAND ${OBJCOPY_COMMAND} -O binary ${MAIN_TARGET} ${PROJECT_NAME}.bin
+    TARGET ${MAIN_TARGET}
+    COMMAND ${SIZE_COMMAND} ${MAIN_TARGET}
+    COMMAND ${OBJCOPY_COMMAND} -O ihex ${MAIN_TARGET} ${PROJECT_NAME}.hex
+    COMMAND ${OBJCOPY_COMMAND} -O binary ${MAIN_TARGET} ${PROJECT_NAME}.bin
 )
