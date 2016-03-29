@@ -1,10 +1,13 @@
 # NRF51 Blinky using CMake
 
 This is an example of how to compile NRF51 code using CMake.
-
-The example is Blinky from Nordic, and assumes you have GCC and the Nordic SDK installed properly.
+The example is Blinky from Nordic, and assumes you have GCC and the Nordic SDK installed properly (please refer [here](https://github.com/ihassin/fruitymesh-ubuntu-vm) and [here](https://github.com/ihassin/fruitymesh-mac-osx) for information on how to automatically install the SDK for Ubuntu and Mac OS X respectively)
 
 # Build
+
+This repo shows you how to use CMake in order to build the binary for the device. Please refer [here](https://github.com/ihassin/nrf51-unity) for an example of using a makefile instead.
+
+The CMake file is [here](https://github.com/ihassin/nrf51-blinky-cmake/blob/master/CMakeLists.txt) and assumes version 3.3 of CMake. Please feel free to change the version number to suite your needs.
 
 ```
 git clone git@github.com:ihassin/nrf51-blinky-cmake.git
@@ -22,7 +25,9 @@ cd .. # Going back to the root of the project
 ./flash
 ```
 
-```flash.sh``` will use ```upload.jlink``` as the parameter file. It will reset the device, load S110 softdevice to it then load ```build/nrf51822_xxac.hex```.
+
+
+```
 
 You should see blinky work immediately on the device.
 
@@ -35,4 +40,4 @@ Please comment and improve so that both binaries are identical!
 # License
 
 MIT, apart from anything belonging to Nordic.
-
+```
